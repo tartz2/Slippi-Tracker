@@ -53,6 +53,26 @@ function createWindow(){
         
     })
 
+    ipc.on('Page1', ()=>{
+        console.log('Page 1 clicked')
+        win.loadURL(url.format({
+            pathname: path.join(__dirname, 'load.html'),
+            protocol: 'file',
+            slashes: true
+        }))
+    })
+    ipc.on('Page2', ()=>{
+        console.log('Page 2 clicked')
+    })
+    ipc.on('Page3', ()=>{
+        console.log('Page 3 clicked')
+    })
+    ipc.on('Page4', ()=>{
+        console.log('Page 4 clicked')
+    })
+
+    //ipc.on()
+
     win.on('maximize', ()=>{
         win.webContents.send('isMaximized')
     })
