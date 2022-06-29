@@ -1,9 +1,11 @@
-const {app, BrowserWindow, ipcMain, Menu} = require('electron')
+const {app, BrowserWindow, ipcMain, Menu, dialog} = require('electron')
 const { meanBy } = require('lodash')
 const path = require('path')
 const url = require('url')
+const fs = require('fs')
 const ipc = ipcMain
 let win
+let loadDirectory
 
 function createWindow(){
     win = new BrowserWindow({
@@ -71,7 +73,26 @@ function createWindow(){
         console.log('Page 4 clicked')
     })
 
-    //ipc.on()
+    let result
+    
+    ipc.on('folderSelect', async (event, arg) => {
+        result = await dialog.showOpenDialog(win, {
+            properties: ['openDirectory']
+          })
+
+        console.log('path: ' + result.filePaths)
+        loadDirectory = result.filePaths
+        win.webContents.send('retrievedFolder', [loadDirectory])
+    })
+
+    ipc.on('homeRequest', ()=>{
+        console.log('Page 1 clicked')
+        win.loadURL(url.format({
+            pathname: path.join(__dirname, 'index.html'),
+            protocol: 'file',
+            slashes: true
+        }))
+    })
 
     win.on('maximize', ()=>{
         win.webContents.send('isMaximized')

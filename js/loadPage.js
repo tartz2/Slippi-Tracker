@@ -9,9 +9,10 @@ const page2 = document.getElementById('page2')
 const page3 = document.getElementById('page3')
 const page4 = document.getElementById('page4')
 const home = document.getElementById('homeBtn')
+const folderSelect = document.getElementById('folderSelect')
+const folderSelectText = document.getElementById('folderSelectText')
 const mySidebar = document.getElementById('mySidebar')
 const ipc = ipcRenderer
-
 var isLeftMenuActive = false
 
 function changeMaxResBtn(isMaximizedApp){
@@ -28,7 +29,11 @@ function changeMaxResBtn(isMaximizedApp){
 
 ipc.on('isMaximized', ()=> { changeMaxResBtn(true) })
 ipc.on('isRestored', ()=> { changeMaxResBtn(false) })
-
+ipc.on('retrievedFolder', function (event, args){
+    let trim = String(args)
+    piece = trim.split('\\')
+    folderSelectText.textContent = piece[piece.length - 1]
+})
 
 closeBtn.addEventListener('click', ()=>{
     ipc.send('closeApp')
@@ -54,9 +59,14 @@ page3.addEventListener('click', ()=>{
 page4.addEventListener('click', ()=>{
     ipc.send('Page4')
 })
+
+folderSelect.addEventListener('click', ()=>{
+    ipc.send('folderSelect')
+})
 home.addEventListener('click', ()=>{
     ipc.send('homeRequest')
 })
+
 
 menuToggle.addEventListener('click', ()=>{
     if(isLeftMenuActive){

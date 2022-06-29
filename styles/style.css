@@ -173,9 +173,22 @@ html, body{
 
 .sideBarButton:hover{
     background-color: #99a1b12d;
+    border-color: #e4e4e4;
+    color: #e4e4e4;
     transition-duration: 0.2s;
     padding: 5px;
     transform: scale(1.14);
+}
+
+.backToHome{
+    background-position: bottom;
+    -webkit-box-align:bottom;
+    -webkit-box-pack:bottom; 
+    padding: 20px;
+    vertical-align: bottom;
+    display:-webkit-box;
+    justify-content: center;
+    transition: transform .5s;
 }
 
 

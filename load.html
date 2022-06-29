@@ -2,7 +2,7 @@
     <head>
         <title>Load Your Files</title>
         <link rel="stylesheet" href="styles/load.css">
-        <script defer src="js/appFunctions.js"></script>
+        <script defer src="js/loadPage.js"></script>
     </head>
     <body>
         <div class = "mainApp">
@@ -20,12 +20,13 @@
                 </div>
             </div>
             <div class="contentArea">
+
                 <div id="mySidebar" class="leftMenu">
                     <div class="leftButtons" id="leftMenuBtns">
 
                         <div class="spacer">
                             <div id="page1" title = "TEST"  class="sideBarButton"> 
-                                <p>Page 1</p>
+                                <p>Load Files</p>
                             </div>
                         </div>
 
@@ -47,9 +48,31 @@
                         </div>             
 
                     </div>
+                    <div style="padding:50px"></div>
+                    <div class="backToHome" id="homeButton">
+                        <div class="spacer">
+                            <div id="homeBtn" title = "HOME"  class="sideBarButton"> 
+                                <p>Home</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
                 <div class="contentPages">
-                    Main Content
+                    <div class="mainContainer">
+                        <div class="title"><div class="spacer">Load Page</div> </div>
+                        <div class="fileButtons">
+                            <div class="spacer">
+                                <div id="folderSelect" title = "folder selection"  class="mainButton"> 
+                                    <p id="folderSelectText" style= "text-align:center;">No Folder</p>
+                                </div>
+                            </div>
+                            <div class="spacer">
+                                <div id="analyzeButton" title = "run analysis"  class="mainButton"> 
+                                    <p id="folderSelectText" style= "text-align:center;">Analyze</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
