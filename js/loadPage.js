@@ -30,9 +30,14 @@ function changeMaxResBtn(isMaximizedApp){
 ipc.on('isMaximized', ()=> { changeMaxResBtn(true) })
 ipc.on('isRestored', ()=> { changeMaxResBtn(false) })
 ipc.on('retrievedFolder', function (event, args){
-    let trim = String(args)
-    piece = trim.split('\\')
-    folderSelectText.textContent = piece[piece.length - 1]
+    if(args == null)
+    folderSelectText.textContent = 'No Folder'
+    else {
+        let trim = String(args)
+        piece = trim.split('\\')
+        folderSelectText.textContent = piece[piece.length - 1]
+    }
+    
 })
 
 closeBtn.addEventListener('click', ()=>{
