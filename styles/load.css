@@ -24,5 +24,12 @@ html, body{
     text-align:center
 }
 
+.fileWarning{
+    font-size: 8pt;
+    align-self: center;
+    justify-content: center;
+    padding: 5px;
+}
+
 
 

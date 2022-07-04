@@ -1,10 +1,12 @@
+<!DOCTYPE html>
+
 <html>
     <head>
-        <title>Load Your Files</title>
+        <title>Analyze</title>
         <link rel="stylesheet" href="styles/style.css">
-        <link rel="stylesheet" href="styles/load.css">
         <link rel="stylesheet" href="styles/menu.css">
-        <script defer src="js/loadPage.js"></script>
+        <link rel="stylesheet" href="styles/analyze.css">
+        <script defer src="js/analyze.js"></script>
     </head>
     <body>
         <div class = "mainApp">
@@ -57,26 +59,43 @@
                         </div>
                     </div>
                 </div>
-                <div class="contentPages">
-                    <div class="mainContainer">
-                        <div class="title"><div class="spacer">Load Page</div> </div>
-                        <div class="fileButtons">
-                            <div class="spacer">
-                                <div id="folderSelect" title = "folder selection"  class="mainButton"> 
-                                    <p id="folderSelectText" style= "text-align:center;">No Folder</p>
-                                </div>
+                <div class="analyzeScreen">
+                    <div class="inputRow">
+                        <div class="dropdowns">
+                            <label for="your-character"> Choose your character:</label>
+                            <div class="spacer"></div>
+                            <select name="character-names" id="char-names" class="characterDropdown">
+                                <option value="fox">Fox</option>
+                                <option value="marth">Marth</option>
+                                <option value="jiggly">Jiggly</option>
+                            </select>
+                        </div>
+                        <div class="dropdowns">
+                            <div class="textField"> Choose opponents character:</div>
+                            <div class="spacer"></div>
+                            <select name="character-names" id="char-names" class="characterDropdown">
+                                <option value="fox">Fox</option>
+                                <option value="marth">Marth</option>
+                                <option value="jiggly">Jiggly</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="inputRow">
+                        <div class="dropdowns">
+                            <div class="textField">
+                                <p>Slippi Connect Code:</p>
                             </div>
-                            <div class="spacer">
-                                <div id="analyzeButton" title = "run analysis"  class="mainButton"> 
-                                    <p id="folderSelectText" style= "text-align:center;">Analyze</p>
-                                </div>
+                            <div class="spacer"></div>
+                            <input type="text" id="connectCode" name="connectCode" class="nameField">
+                        </div>
+                        <div class="dropdowns">
+                            <div id="submit" class="sideBarButton">
+                                <p>Submit</p>
                             </div>
                         </div>
-                        <div id="fileWarning" class="fileWarning"></div>
                     </div>
                 </div>
             </div>
         </div>
-        
     </body>
 </html>

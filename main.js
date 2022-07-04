@@ -1,4 +1,5 @@
 const {app, BrowserWindow, ipcMain, Menu, dialog} = require('electron')
+const { SlippiGame } = require("@slippi/slippi-js")
 const { meanBy } = require('lodash')
 const path = require('path')
 const url = require('url')
@@ -27,7 +28,9 @@ function createWindow(){
         slashes: true
     }))
 
-    // win.webContents.openDevTools()
+    /* OPEN DEV TOOLS*/
+    win.webContents.openDevTools()
+    /* ------------- */
 
     win.on('closed', () => {
         win = null
@@ -76,13 +79,42 @@ function createWindow(){
     let result
     
     ipc.on('folderSelect', async (event, arg) => {
+        // open windows dialog
         result = await dialog.showOpenDialog(win, {
             properties: ['openDirectory']
           })
-
+        
         console.log('path: ' + result.filePaths)
         loadDirectory = result.filePaths
-        win.webContents.send('retrievedFolder', [loadDirectory])
+        let fileNum = 0;
+        // scan directory for number of slp files
+        fs.readdir(String(loadDirectory), function (err, files) {
+            // handling error
+            if (err) {
+                return console.log('Unable to scan directory: ' + err);
+            } 
+            // listing all files using forEach
+            files.forEach(function (file) {
+                // check that its a slippi replay file
+                let name = String(file)
+                piece = name.split('.')
+                if(piece.length > 1 && piece[1] == 'slp'){
+                    fileNum += 1;
+                }
+            });
+            // send the directory and number of files
+            win.webContents.send('retrievedFolder', [loadDirectory, fileNum])
+        });
+        
+    })
+
+    ipc.on('analyze', ()=>{
+        console.log('Analyzing...')
+        win.loadURL(url.format({
+            pathname: path.join(__dirname, 'analyze.html'),
+            protocol: 'file',
+            slashes: true
+        }))
     })
 
     ipc.on('homeRequest', ()=>{
@@ -92,6 +124,25 @@ function createWindow(){
             protocol: 'file',
             slashes: true
         }))
+    })
+
+    /* -- Main Analyze Function -- */
+    // In the end this will have arguments sent from the analyze js file, and then
+    // the arguments will be considered while building the data and looking into the files.
+    // So far this only shows that I can loop through all the slp files in the directory
+    ipc.on('submitAnalyze', ()=>{
+        fs.readdir(String(loadDirectory), function (err, files) {
+            if (err) {
+              console.error("Could not list the directory.", err);
+              process.exit(1);
+            }
+            files.forEach(function (file, index) {
+                console.log(String(file))
+                let game = new SlippiGame("" + loadDirectory + "\\" + String(file))
+                const frames = game.getFrames();
+                console.log(frames[0].players);
+            });
+        })
     })
 
     win.on('maximize', ()=>{

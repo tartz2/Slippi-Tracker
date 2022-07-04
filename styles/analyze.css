@@ -1,0 +1,55 @@
+html, body{
+    margin: 0;
+    padding: 0;
+    font-size: 10pt;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: #949AA7;
+    background-color: #2C313C;
+    width: 100%;
+    height: 100%;
+}
+
+.mainAnalyze{
+    font-size:20px;
+}
+.analyzeScreen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    vertical-align: top;
+    background-position: center;
+    transition: 0.2s;
+    width: 100%;
+    height: 100%;
+}
+.characterDropdown{
+    height:25px;
+    width:auto;
+}
+.dropdowns{
+    display:flex;
+    padding:50px;
+}
+
+.nameField{
+    min-width: 50px;
+    max-width: 80px;
+    height: 25px;
+}
+.textField{
+    height:35px;
+    text-align:center;
+    width:auto;
+}
+.inputRow{
+    display:flex;
+    margin: 0 auto;
+    align-self: center;
+    flex-direction: row;
+    background-position: center;
+    transition: 0.2s;
+    width: 100%;
+    height: 120px;
+    min-height: 100px;
+    max-height: 200px;
+}

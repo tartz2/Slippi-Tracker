@@ -1,4 +1,6 @@
 const { ipcRenderer } = require('electron')
+const { SlippiGame } = require("@slippi/slippi-js")
+const fs = require('fs')
 const maxResBtn = document.getElementById('maxResBtn')
 const leftMenuBtns = document.getElementById('leftMenuBtns')
 const homeElement = document.getElementById('homeButton')
@@ -11,9 +13,11 @@ const page2 = document.getElementById('page2')
 const page3 = document.getElementById('page3')
 const page4 = document.getElementById('page4')
 const home = document.getElementById('homeBtn')
+const submit = document.getElementById('submit')
 const mySidebar = document.getElementById('mySidebar')
 const ipc = ipcRenderer
 var isLeftMenuActive = false
+var path = "C:\Users\Thomas Artz\Documents\Slippi"
 
 function changeMaxResBtn(isMaximizedApp){
     if(isMaximizedApp){
@@ -57,6 +61,9 @@ page4.addEventListener('click', ()=>{
 })
 home.addEventListener('click', ()=>{
     ipc.send('homeRequest')
+})
+submit.addEventListener('click', ()=>{
+    ipc.send('submitAnalyze')
 })
 
 menuToggle.addEventListener('click', ()=>{

@@ -20,6 +20,7 @@ html, body{
     overflow: hidden;
     border: 1px solid #343B4B;
     -webkit-box-sizing: border-box;
+            box-sizing: border-box;
 }
 
 .mainApp > .topBar {
@@ -30,6 +31,7 @@ html, body{
     border-bottom: 3px solid #343B4B;
     background-color: #1B1D23;
     -webkit-user-select: none;
+            user-select: none;
 }
 
 .topBar > .titleBar {
